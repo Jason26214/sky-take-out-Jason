@@ -1,6 +1,7 @@
 package com.sky.controller.admin;
 
 import com.sky.constant.JwtClaimsConstant;
+import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.entity.Employee;
 import com.sky.properties.JwtProperties;
@@ -23,6 +24,7 @@ import java.util.Map;
 /**
  * 员工管理
  */
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @RestController
 @RequestMapping("/admin/employee")
 @Slf4j
@@ -37,8 +39,8 @@ public class EmployeeController {
     /**
      * 登录
      *
-     * @param employeeLoginDTO
-     * @return
+     * @param employeeLoginDTO employeeLoginDTO
+     * @return Result
      */
     @PostMapping("/login")
     @ApiOperation(value = "员工登录")
@@ -68,11 +70,24 @@ public class EmployeeController {
     /**
      * 退出
      *
-     * @return
+     * @return Result
      */
     @PostMapping("/logout")
     @ApiOperation("员工退出")
     public Result<String> logout() {
+        return Result.success();
+    }
+
+    /**
+     * 新增员工
+     * @param employeeDTO employeeDTO
+     * @return Result
+     */
+    @PostMapping
+    @ApiOperation("新增员工")
+    public Result<Void> save(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("新增员工: {}", employeeDTO);
+        employeeService.save(employeeDTO);
         return Result.success();
     }
 
