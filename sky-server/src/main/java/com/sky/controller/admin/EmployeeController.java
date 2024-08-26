@@ -107,7 +107,7 @@ public class EmployeeController {
 
     /**
      * ToggleStatus
-     *
+     * 启动禁用员工账号
      * @param status 1:Enable 2:Disable
      * @param id     id
      * @return Void
@@ -120,4 +120,31 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * Get Emp by id
+     * 根据员工id查询
+     * @param id id
+     * @return Employee
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("Get Emp by id")
+    public Result<Employee> getById(@PathVariable Long id) {
+        log.info("getById: EmployeeId-{}", id);
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    /**
+     * 编辑员工信息
+     * UPDATE EMP
+     * @param employeeDTO employeeDTO
+     * @return Void
+     */
+    @PutMapping
+    @ApiOperation("Update Emp")
+    public Result<Void> update(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("update: EmployeeDTO-{}", employeeDTO);
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
 }

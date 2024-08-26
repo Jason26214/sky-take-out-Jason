@@ -116,7 +116,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * ToggleStatus
-     *
+     * 启动禁用员工账号
      * @param status 1:Enable 2:Disable
      * @param id     id
      */
@@ -126,6 +126,41 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .status(status)
                 .id(id)
                 .build();
+
+        employeeMapper.update(employee);
+    }
+
+    /**
+     * Get Emp by id
+     * 根据员工id查询
+     * @param id id
+     * @return Employee
+     */
+    public Employee getById(Long id) {
+        // SELECT * FROM employee WHERE id = ?
+        Employee employee = employeeMapper.selectById(id);
+        //Simply to prevent the front end from accessing the password
+        employee.setPassword("****");
+        return employee;
+    }
+
+    /**
+     * 编辑员工信息
+     * UPDATE EMP
+     * @param employeeDTO employeeDTO
+     */
+    public void update(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+
+        //对象属性拷贝
+        BeanUtils.copyProperties(employeeDTO, employee);
+
+        //设置当前记录的修改时间
+        employee.setUpdateTime(LocalDateTime.now());
+
+        //设置当前记录创建人id和修改人id
+        //用LocalThread获取Interceptor令牌中的id并传入到这里
+        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
     }

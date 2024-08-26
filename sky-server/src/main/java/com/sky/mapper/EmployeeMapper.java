@@ -29,14 +29,27 @@ public interface EmployeeMapper {
 
     /**
      * 员工分页查询(XML)
+     *
      * @param employeePageQueryDTO name,page,pageSize
      * @return PageResult
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
     /**
-     * Dynamic UPDATE Employee(XML)
+     * Dynamic UPDATE employee(XML)
+     * 动态修改employee
+     *
      * @param employee employee
      */
     void update(Employee employee);
+
+    /**
+     * select Emp by id
+     * 根据员工id查询
+     *
+     * @param id id
+     * @return Employee
+     */
+    @Select("SELECT * FROM employee WHERE id = #{id}")
+    Employee selectById(Long id);
 }
