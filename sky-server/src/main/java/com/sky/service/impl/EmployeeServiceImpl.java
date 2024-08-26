@@ -114,4 +114,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total, records);
     }
 
+    /**
+     * ToggleStatus
+     *
+     * @param status 1:Enable 2:Disable
+     * @param id     id
+     */
+    public void toggleStatus(Integer status, Long id) {
+        // UPDATE employee SET status = ? where id = ?
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+
+        employeeMapper.update(employee);
+    }
+
 }

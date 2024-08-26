@@ -3,7 +3,6 @@ package com.sky.mapper;
 import com.github.pagehelper.Page;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
-import com.sky.result.PageResult;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -34,4 +33,10 @@ public interface EmployeeMapper {
      * @return PageResult
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * Dynamic UPDATE Employee(XML)
+     * @param employee employee
+     */
+    void update(Employee employee);
 }

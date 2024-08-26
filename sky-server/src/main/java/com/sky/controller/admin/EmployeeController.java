@@ -79,6 +79,7 @@ public class EmployeeController {
 
     /**
      * 新增员工
+     *
      * @param employeeDTO employeeDTO
      * @return Result
      */
@@ -92,15 +93,31 @@ public class EmployeeController {
 
     /**
      * 员工分页查询
+     *
      * @param employeePageQueryDTO name,page,pageSize
      * @return PageResult
      */
     @GetMapping("/page")
     @ApiOperation("员工分页查询")
-    public Result<PageResult> page (EmployeePageQueryDTO employeePageQueryDTO) {
+    public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("员工分页查询: {}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * ToggleStatus
+     *
+     * @param status 1:Enable 2:Disable
+     * @param id     id
+     * @return Void
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("Enable/Disable Emp Account")
+    public Result<Void> toggleStatus(@PathVariable Integer status, Long id) {
+        log.info("toggleStatus: EmployeeId-{}; EmployeeStatus-{}", id, status);
+        employeeService.toggleStatus(status, id);
+        return Result.success();
     }
 
 }

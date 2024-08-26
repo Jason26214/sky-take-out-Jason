@@ -27,4 +27,12 @@ public interface EmployeeService {
      * @return PageResult
      */
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * ToggleStatus
+     *
+     * @param status 1:Enable 2:Disable
+     * @param id     id
+     */
+    void toggleStatus(Integer status, Long id);
 }
