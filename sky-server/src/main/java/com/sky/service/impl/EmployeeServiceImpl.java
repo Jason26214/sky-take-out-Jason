@@ -137,7 +137,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     public Employee getById(Long id) {
         // SELECT * FROM employee WHERE id = ?
-        Employee employee = employeeMapper.selectById(id);
+        Employee employee = employeeMapper.getById(id);
         //Simply to prevent the front end from accessing the password
         employee.setPassword("****");
         return employee;
