@@ -61,4 +61,11 @@
         </set>
         WHERE id = #{id}
     </update>
+
+    <delete id="deleteByIds">
+        DELETE FROM dish WHERE id IN
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
