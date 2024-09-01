@@ -70,6 +70,7 @@ public class DishController {
 
     /**
      * 根据id查询菜品
+     *
      * @param id
      * @return
      */
@@ -83,6 +84,7 @@ public class DishController {
 
     /**
      * 根据id修改菜品基本信息和对应的口味信息
+     *
      * @param dishDTO
      * @return
      */
@@ -91,6 +93,20 @@ public class DishController {
     public Result<Void> update(@RequestBody DishDTO dishDTO) {
         log.info("修改菜品: {}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
+        return Result.success();
+    }
+
+    /**
+     * 菜品起售/停售
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("菜品起售停售")
+    public Result<Void> startOrStop(@PathVariable("status") Integer status, Long id) {
+        log.info("菜品起售/停售: {}", status);
+        dishService.startOrStop(status, id);
         return Result.success();
     }
 }

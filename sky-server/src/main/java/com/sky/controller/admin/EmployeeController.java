@@ -114,9 +114,9 @@ public class EmployeeController {
      */
     @PostMapping("/status/{status}")
     @ApiOperation("Enable/Disable Emp Account")
-    public Result<Void> toggleStatus(@PathVariable Integer status, Long id) {
+    public Result<Void> startOrStop(@PathVariable Integer status, Long id) {
         log.info("toggleStatus: EmployeeId-{}; EmployeeStatus-{}", id, status);
-        employeeService.toggleStatus(status, id);
+        employeeService.startOrStop(status, id);
         return Result.success();
     }
 

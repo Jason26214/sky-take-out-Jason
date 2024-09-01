@@ -34,7 +34,7 @@ public interface EmployeeService {
      * @param status 1:Enable 2:Disable
      * @param id     id
      */
-    void toggleStatus(Integer status, Long id);
+    void startOrStop(Integer status, Long id);
 
     /**
      * Get Emp by id

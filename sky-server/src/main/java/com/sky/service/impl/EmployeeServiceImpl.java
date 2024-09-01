@@ -119,7 +119,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param status 1:Enable 2:Disable
      * @param id     id
      */
-    public void toggleStatus(Integer status, Long id) {
+    public void startOrStop(Integer status, Long id) {
         // UPDATE employee SET status = ? where id = ?
         Employee employee = Employee.builder()
                 .status(status)
