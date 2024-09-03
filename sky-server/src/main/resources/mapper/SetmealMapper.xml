@@ -60,4 +60,12 @@
         </where>
         ORDER BY s.create_time DESC
     </select>
+
+    <delete id="deleteBatch" parameterType="List">
+        DELETE
+        FROM setmeal WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

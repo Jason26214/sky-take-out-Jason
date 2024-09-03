@@ -14,11 +14,18 @@
     </select>
 
     <!--批量保存套餐和菜品的关联关系-->
-    <insert id="insertBatch" parameterType="List">
+    <insert id="insertBatch" parameterType="list">
         INSERT INTO setmeal_dish (setmeal_id, dish_id, name, price, copies)
         VALUES
             <foreach collection="setmealDishes" item="sd" separator=",">
                 (#{sd.setmealId},#{sd.dishId},#{sd.name},#{sd.price}, #{sd.copies})
             </foreach>
     </insert>
+
+    <delete id="deleteBySetmealIds" parameterType="list">
+        DELETE FROM setmeal_dish WHERE setmeal_id IN
+        <foreach collection="setmealIds" item="setmealId" separator="," open="(" close=")">
+            #{setmealId}
+        </foreach>
+    </delete>
 </mapper>
