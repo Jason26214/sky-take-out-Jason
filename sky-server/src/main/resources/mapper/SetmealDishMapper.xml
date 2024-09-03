@@ -22,6 +22,7 @@
             </foreach>
     </insert>
 
+    <!--根据setmeal_id数组批量删除套餐和菜品的关联关系-->
     <delete id="deleteBySetmealIds" parameterType="list">
         DELETE FROM setmeal_dish WHERE setmeal_id IN
         <foreach collection="setmealIds" item="setmealId" separator="," open="(" close=")">
