@@ -1,0 +1,63 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    #导入dev.yml
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    #阿里云连接池(需依赖)
+    druid:
+      driver-class-name: ${sky.datasource.driver-class-name}
+      url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${sky.datasource.username}
+      password: ${sky.datasource.password}
+  #Redis配置
+  redis:
+    host: ${sky.redis.host}
+    port: ${sky.redis.port}
+    password: ${sky.redis.password}
+    database: ${sky.redis.database}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sky.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+    #spring事务管理日志
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+sky:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间(一周)
+    admin-ttl: 604800000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    # 用户端微信用户生成jwt令牌相关配置
+    user-secret-key: itheima
+    user-ttl: 604800000
+    user-token-name: authentication
+  #阿里云OSS
+  alioss:
+    endpoint: ${sky.alioss.endpoint}
+    access-key-id: ${sky.alioss.access-key-id}
+    access-key-secret: ${sky.alioss.access-key-secret}
+    bucket-name: ${sky.alioss.bucket-name}
+  #WeChatProperties
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
