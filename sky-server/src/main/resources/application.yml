@@ -42,13 +42,13 @@ logging:
 sky:
   jwt:
     # 设置jwt签名加密时使用的秘钥
-    admin-secret-key: itcast
+    admin-secret-key: ejjhzelx
     # 设置jwt过期时间(一周)
     admin-ttl: 604800000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
     # 用户端微信用户生成jwt令牌相关配置
-    user-secret-key: itheima
+    user-secret-key: jszjopqkvx
     user-ttl: 604800000
     user-token-name: authentication
   #阿里云OSS
