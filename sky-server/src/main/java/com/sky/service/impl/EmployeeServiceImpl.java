@@ -68,6 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 新增员工
+     *
      * @param employeeDTO employeeDTO
      */
     public void save(EmployeeDTO employeeDTO) {
@@ -97,6 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 员工分页查询
+     *
      * @param employeePageQueryDTO name,page,pageSize
      * @return PageResult
      */
@@ -116,6 +118,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * ToggleStatus
      * 启动禁用员工账号
+     *
      * @param status 1:Enable 2:Disable
      * @param id     id
      */
@@ -132,6 +135,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * Get Emp by id
      * 根据员工id查询
+     *
      * @param id id
      * @return Employee
      */
@@ -146,6 +150,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     /**
      * 编辑员工信息
      * UPDATE EMP
+     *
      * @param employeeDTO employeeDTO
      */
     public void update(EmployeeDTO employeeDTO) {

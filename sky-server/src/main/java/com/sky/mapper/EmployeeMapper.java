@@ -37,6 +37,7 @@ public interface EmployeeMapper {
      * @return PageResult
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+    //List<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
     /**
      * Dynamic UPDATE employee(XML)
