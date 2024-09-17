@@ -68,3 +68,8 @@ sky:
     weChatPayCertFilePath: ${sky.wechat.weChatPayCertFilePath}
     notifyUrl: ${sky.wechat.notifyUrl}
     refundNotifyUrl: ${sky.wechat.refundNotifyUrl}
+  #百度地图配置(用于校验是否超出配送范围)(没申请百度ak该功能无法用)
+  shop:
+    address: 北京市海淀区上地十街10号
+  baidu:
+    ak: baidu-ak
