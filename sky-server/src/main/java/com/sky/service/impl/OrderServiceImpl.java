@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -285,6 +286,30 @@ public class OrderServiceImpl implements OrderService {
         orders.setCancelReason("用户取消");
         orders.setCancelTime(LocalDateTime.now());
         orderMapper.update(orders);
+    }
+
+    /**
+     * 再来一单
+     *
+     * @param orderId
+     * @return
+     */
+    public void repetition(Long orderId) {
+        //from order_detail select * by orderId
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(orderId);
+
+        //convert orderDetailList to shoppingCartList
+        Long userId = BaseContext.getCurrentId();
+        List<ShoppingCart> shoppingCartList = orderDetailList.stream().map(orderDetail -> {
+            ShoppingCart shoppingCart = new ShoppingCart();
+            BeanUtils.copyProperties(orderDetail, shoppingCart, "id");
+            shoppingCart.setUserId(userId);
+            shoppingCart.setCreateTime(LocalDateTime.now());
+            return shoppingCart;
+        }).collect(Collectors.toList());
+
+        //INSERT shoppingCartList to shopping_cart
+        shoppingCartMapper.insertBatch(shoppingCartList);
     }
 }
 
