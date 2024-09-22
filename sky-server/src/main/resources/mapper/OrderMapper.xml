@@ -74,14 +74,13 @@
     </select>
 
     <select id="sumByMap" resultType="java.lang.Double">
-        <!--SELECT SUM(amount) FROM orders WHERE order_time > beginTime AND order_time < endTime AND status = 5-->
         SELECT SUM(amount) FROM orders
         <where>
             <if test="begin != null">
-                AND order_time &gt; #{begin}
+                AND order_time &gt;= #{begin}
             </if>
             <if test="end != null">
-                AND order_time &lt; #{end}
+                AND order_time &lt;= #{end}
             </if>
             <if test="status != null">
                 AND status = #{status}
