@@ -80,8 +80,9 @@ sky:
     refundNotifyUrl: {your_refund_notify_url}
 ```
 2. Import sql file in "sky-server/src/main/resources/MySql/sky_take_out.sql"
-3. Run nginx.exe in "sky-server/src/main/resources/Nginx/nginx.exe"
-4. Run SkyApplication.java in "sky-server/src/main/java/com/sky/SkyApplication.java"
+3. Run nginx.exe in "sky-server/src/main/resources/Nginx/nginx.exe"  
+4. Run Redis
+5. Run SkyApplication.java in "sky-server/src/main/java/com/sky/SkyApplication.java"
 
 ### 2. How to run User Side
 If you want to run the user side, you need to clone the [sky-take-out-wechat-userFrontEnd](https://github.com/Jason26214/sky-take-out-wechat-userFrontEnd.git) repository into WeChat Developer Tools and run it there.
